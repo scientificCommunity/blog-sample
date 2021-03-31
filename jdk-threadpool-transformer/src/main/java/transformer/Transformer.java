@@ -1,13 +1,12 @@
-package org.baichuan.example.vertx.transformer;
+package transformer;
 
-import javassist.*;
+import javassist.ClassPool;
+import javassist.CtClass;
+import javassist.LoaderClassPath;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.lang.instrument.ClassFileTransformer;
-import java.lang.instrument.IllegalClassFormatException;
 import java.lang.instrument.Instrumentation;
-import java.security.ProtectionDomain;
 
 /**
  * @author: tk (soulmate.tangk at gmail dot com)
@@ -18,8 +17,7 @@ public class Transformer {
 
     public static void premain(String agentArgs, Instrumentation inst) {
         System.out.println("agentArgs : " + agentArgs);
-        inst.addTransformer(new VertxFutureTransformer(), true);
-        inst.addTransformer(new NettyExecutorTransformer(), true);
+        inst.addTransformer(new ThreadPoolExecutorTransformer(), true);
         transformed = true;
     }
 

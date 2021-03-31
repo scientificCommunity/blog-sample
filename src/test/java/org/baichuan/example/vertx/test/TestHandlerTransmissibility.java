@@ -2,7 +2,7 @@ package org.baichuan.example.vertx.test;
 
 import io.vertx.core.Vertx;
 import lombok.extern.slf4j.Slf4j;
-import org.baichuan.example.vertx.GlobalIdUtils;
+import org.baichuan.example.utils.TransmissibleIdUtils;
 import org.baichuan.example.vertx.Utils;
 import org.baichuan.example.vertx.verticle.DeployHandler;
 import org.baichuan.example.vertx.verticle.V2;
@@ -32,9 +32,9 @@ public class TestHandlerTransmissibility {
         vertx.deployVerticle(new V3(), new DeployHandler());
 
         Utils.acquire();
-        GlobalIdUtils.put(id++);
+        TransmissibleIdUtils.put(id++);
         vertx.eventBus().request(C2.NAME, MESSAGE_1, event -> {
-            log.info("global id in callback is {}", GlobalIdUtils.get());
+            log.info("global id in callback is {}", TransmissibleIdUtils.get());
             log.info("received reply msg 【{}】 from {}", event.result().body(), C2.NAME);
         });
     }

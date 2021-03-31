@@ -13,6 +13,7 @@ repositories {
 dependencies {
     implementation group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
     compileOnly("io.vertx:vertx-core:4.0.0")
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
@@ -27,7 +28,7 @@ jar {
         )
 
         attributes(
-                "Premain-Class": "org.baichuan.example.vertx.transformer.Premain"
+                "Premain-Class": "org.baichuan.example.vertx.transformer.Transformer"
         )
         attributes(
                 "Can-Retransform-Classes": true

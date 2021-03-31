@@ -4,7 +4,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.Message;
 import lombok.extern.slf4j.Slf4j;
-import org.baichuan.example.vertx.GlobalIdUtils;
+import org.baichuan.example.utils.TransmissibleIdUtils;
 import org.baichuan.example.vertx.Utils;
 
 /**
@@ -26,11 +26,11 @@ public class C2 implements Handler<Message<Object>> {
 
     @Override
     public void handle(Message<Object> event) {
-        log.info("{} global id in handler is {}", Utils.SYMBOL, GlobalIdUtils.get());
+        log.info("{} global id in handler is {}", Utils.SYMBOL, TransmissibleIdUtils.get());
 
         log.info("consumer 【{}】received msg:{}", NAME, event.body());
         vertx.eventBus().request(C3.NAME, DELIVERY_MSG, reply -> {
-            log.info("{}global id in callback is {}", Utils.SYMBOL, GlobalIdUtils.get());
+            log.info("{}global id in callback is {}", Utils.SYMBOL, TransmissibleIdUtils.get());
             log.info("received reply msg 【{}】 in {}", reply.result().body(), C1.NAME);
         });
         event.reply(REPLY_MSG);

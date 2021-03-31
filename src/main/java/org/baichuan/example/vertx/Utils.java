@@ -36,6 +36,7 @@ public class Utils {
      */
     public static Vertx initVertx() {
         VertxOptions vertxOptions = new VertxOptions();
+        //分配3个eventLoop线程
         vertxOptions.setEventLoopPoolSize(3);
         return Vertx.vertx(vertxOptions);
     }

@@ -189,7 +189,7 @@ nbdist/
 jooq.properties
 /config_json
 
-/build
+*/build
 */generated
 
 sensors-upstream.log.2020-08-12

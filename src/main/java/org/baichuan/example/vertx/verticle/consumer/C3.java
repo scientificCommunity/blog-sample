@@ -4,7 +4,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.Message;
 import lombok.extern.slf4j.Slf4j;
-import org.baichuan.example.vertx.GlobalIdUtils;
+import org.baichuan.example.utils.TransmissibleIdUtils;
 import org.baichuan.example.vertx.Utils;
 
 /**
@@ -24,7 +24,7 @@ public class C3 implements Handler<Message<Object>> {
 
     @Override
     public void handle(Message<Object> event) {
-        log.info("{}global id in handler {} is {}", NAME, Utils.SYMBOL, GlobalIdUtils.get());
+        log.info("{}global id in handler {} is {}", NAME, Utils.SYMBOL, TransmissibleIdUtils.getAndClear());
         log.info("consumer 【{}】received msg:{}", NAME, event.body());
         event.reply(REPLY_MSG);
     }

@@ -18,9 +18,12 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok:1.18.16'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
 
-    implementation "org.slf4j:slf4j-simple:1.7.26"
+    //implementation "org.slf4j:slf4j-simple:1.7.26"
+    implementation "ch.qos.logback:logback-classic:1.2.3"
 
     implementation("io.vertx:vertx-core:4.0.0")
+    compile 'io.vertx:vertx-web:4.0.3'
+    testCompile 'io.vertx:vertx-web-client:4.0.0'
 
     testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
@@ -35,5 +38,13 @@ if (hasProperty('withAgent')) {
 test {
     if (withAgent) {
         jvmArgs("-javaagent:$project.rootDir/vertx4-transformer/build/libs/vertx4-transformer-1.0-SNAPSHOT.jar")
+    }
+}
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.baichuan.example.Main'
+    }
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
     }
 }

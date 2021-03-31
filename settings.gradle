@@ -1,3 +1,4 @@
 rootProject.name = 'blog-sample'
 include 'vertx4-transformer'
+include 'jdk-threadpool-transformer'
 
