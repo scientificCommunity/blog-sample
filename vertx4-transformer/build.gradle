@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'maven'
+}
+
+group 'org.baichuan.blog.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
+    compileOnly("io.vertx:vertx-core:4.0.0")
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+jar {
+    manifest {
+        attributes(
+                "Implementation-Title": project.name
+        )
+
+        attributes(
+                "Implementation-Version": archiveVersion
+        )
+
+        attributes(
+                "Premain-Class": "org.baichuan.example.vertx.transformer.Premain"
+        )
+        attributes(
+                "Can-Retransform-Classes": true
+        )
+
+        attributes(
+                "Can-Redefine-Classes": true
+        )
+        attributes(
+                "Boot-Class-Path": rootProject.name + ".jar"
+        )
+
+    }
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
+}
