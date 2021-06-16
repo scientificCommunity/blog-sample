@@ -2,6 +2,8 @@ plugins {
     id 'java'
 }
 
+apply from: './version.gradle'
+
 group 'org.example'
 version '1.0-SNAPSHOT'
 
@@ -21,9 +23,9 @@ dependencies {
     //implementation "org.slf4j:slf4j-simple:1.7.26"
     implementation "ch.qos.logback:logback-classic:1.2.3"
 
-    implementation("io.vertx:vertx-core:4.0.0")
-    compile 'io.vertx:vertx-web:4.0.3'
-    testCompile 'io.vertx:vertx-web-client:4.0.0'
+    implementation("io.vertx:vertx-core:${vertxVersion}")
+    compile "io.vertx:vertx-web:${vertxVersion}"
+    testCompile "io.vertx:vertx-web-client:${vertxVersion}"
 
     testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
