@@ -3,7 +3,7 @@ package org.baichuan.example.utils;
 import org.baichuan.example.vertx.transformer.TransmissibleThreadLocal;
 
 /**
- * @author: tk (soulmate.tangk at gmail dot com)
+ * @author: tk (rivers.boat.snow at gmail dot com)
  * @date: 2021/3/30
  */
 public class TransmissibleIdUtils {

@@ -5,7 +5,7 @@ import io.vertx.core.Handler;
 import java.util.HashMap;
 
 /**
- * @author: tk (soulmate.tangk at gmail dot com)
+ * @author: tk (rivers.boat.snow at gmail dot com)
  * @date: 2021/3/26
  * @see io.vertx.core.Handler
  */

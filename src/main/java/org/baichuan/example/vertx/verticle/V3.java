@@ -8,7 +8,7 @@ import org.baichuan.example.vertx.verticle.consumer.C1;
 import org.baichuan.example.vertx.verticle.consumer.C3;
 
 /**
- * @author: tk (soulmate.tangk at gmail dot com)
+ * @author: tk (rivers.boat.snow at gmail dot com)
  * @date: 2021/3/30
  */
 @Slf4j

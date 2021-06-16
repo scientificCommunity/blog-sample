@@ -5,7 +5,7 @@ import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.HttpServerResponse;
 
 /**
- * @author: tk (soulmate.tangk at gmail dot com)
+ * @author: tk (rivers.boat.snow at gmail dot com)
  * @date: 2021/4/23
  */
 public class Main {

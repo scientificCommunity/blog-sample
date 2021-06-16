@@ -18,7 +18,7 @@ import java.util.Map;
  * @see ContextInitializer#autoConfig()
  * @see ContextInitializer#findURLOfDefaultConfigurationFile(boolean)
  * @see ch.qos.logback.classic.PatternLayout
- * @author: tk (soulmate.tangk at gmail dot com)
+ * @author: tk (rivers.boat.snow at gmail dot com)
  * @date: 2021/4/4
  */
 public class CustomLoggerFactory {

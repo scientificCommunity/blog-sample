@@ -5,7 +5,7 @@ import io.vertx.core.Promise;
 import org.baichuan.example.vertx.verticle.consumer.C1;
 
 /**
- * @author: tk (soulmate.tangk at gmail dot com)
+ * @author: tk (rivers.boat.snow at gmail dot com)
  * @date: 2021/3/30
  */
 public class V1 extends AbstractVerticle {

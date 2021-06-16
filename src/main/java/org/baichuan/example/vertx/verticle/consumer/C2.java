@@ -8,7 +8,7 @@ import org.baichuan.example.utils.TransmissibleIdUtils;
 import org.baichuan.example.vertx.Utils;
 
 /**
- * @author: tk (soulmate.tangk at gmail dot com)
+ * @author: tk (rivers.boat.snow at gmail dot com)
  * @date: 2021/3/30
  */
 @Slf4j

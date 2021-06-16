@@ -3,7 +3,7 @@ package org.baichuan.example.vertx.transformer;
 import java.util.HashSet;
 
 /**
- * @author: tk (soulmate.tangk at gmail dot com)
+ * @author: tk (rivers.boat.snow at gmail dot com)
  * @date: 2021/3/26
  */
 public class ThreadLocalHolder {
