@@ -7,7 +7,7 @@ import io.vertx.redis.client.RedisAPI;
 import io.vertx.redis.client.Request;
 
 /**
- * @author: tk (soulmate.tangk at gmail dot com)
+ * @author: tk (rivers.boat.snow at gmail dot com)
  * @date: 2021/6/16
  */
 public final class ClientUsage {
@@ -50,7 +50,7 @@ public final class ClientUsage {
                 });
         RedisAPI api = RedisAPI.api(client);
         api.get("a").onSuccess(event -> {
-            System.out.println("the val of key a is " + event.toString());
+            System.out.println("the val for key 'a' is " + event.toString());
         });
     }
 }

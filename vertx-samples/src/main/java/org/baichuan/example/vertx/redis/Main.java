@@ -1,7 +1,7 @@
 package org.baichuan.example.vertx.redis;
 
 /**
- * @author: tk (soulmate.tangk at gmail dot com)
+ * @author: tk (rivers.boat.snow at gmail dot com)
  * @date: 2021/6/16
  */
 public class Main {
