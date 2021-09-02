@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.5.20'
     id("org.springframework.boot") version "2.5.3"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
+
+    id("org.jetbrains.dokka") version "1.5.0"
 }
 
 apply from: './version.gradle'
@@ -19,6 +21,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    //kotlin doc
+    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.5.0")
 
     implementation project(":vertx4-transformer")
 
