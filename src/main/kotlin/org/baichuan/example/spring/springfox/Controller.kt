@@ -23,7 +23,7 @@ class Controller {
         message = "ok",
     )
     @PostMapping("test", consumes = [MediaType.APPLICATION_FORM_URLENCODED_VALUE])
-    fun test(model: KotlinModel) {
+    fun test(model: CompiledKotlinModel) {
 
     }
 }

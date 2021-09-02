@@ -10,13 +10,15 @@ import io.swagger.annotations.ApiModelProperty
 @ApiModel
 class KotlinModel {
     @ApiModelProperty
-    private var field: String? = null
+    var field: String? = null
+    @ApiModelProperty
+    lateinit var field1: String
 
-    fun setField(field: String?) {
+    /*fun setField(field: String?) {
         this.field = field
     }
 
     fun getField(): String? {
         return field
-    }
+    }*/
 }
