@@ -13,7 +13,7 @@ public class CompiledKotlinModel {
     @ApiModelProperty
     @Nullable
     private String field;
-//    @ApiModelProperty
+    @ApiModelProperty
     public String field1;
 
     @Nullable
