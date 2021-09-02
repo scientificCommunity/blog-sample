@@ -1,5 +1,8 @@
 plugins {
     id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.20'
+    id("org.springframework.boot") version "2.5.3"
+    id("io.spring.dependency-management") version "1.0.11.RELEASE"
 }
 
 apply from: './version.gradle'
@@ -12,6 +15,11 @@ repositories {
 }
 
 dependencies {
+    //kotlin
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+
     implementation project(":vertx4-transformer")
 
     compileOnly 'org.projectlombok:lombok:1.18.16'
@@ -27,10 +35,22 @@ dependencies {
     compile "io.vertx:vertx-web:${vertxVersion}"
     testCompile "io.vertx:vertx-web-client:${vertxVersion}"
 
+    //spring
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    //swagger
+    implementation "io.springfox:springfox-boot-starter:3.0.0"
+
     testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
 configurations {
     'org.projectlombok:lombok:1.18.16'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 def withAgent = false
