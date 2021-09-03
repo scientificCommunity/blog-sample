@@ -22,6 +22,8 @@ class Controller {
     )
     @PostMapping("test", consumes = [MediaType.APPLICATION_FORM_URLENCODED_VALUE])
     fun test(model: CompiledKotlinModel) {
-
+        KotlinModel()::field1.isFinal
     }
+
 }
+
