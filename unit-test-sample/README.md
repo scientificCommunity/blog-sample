@@ -1,7 +1,7 @@
 #unit-test-sample
 junit的使用案例
 
-###关于mock Kotlin object静态方法报错
+### 关于mock Kotlin object静态方法报错
 比如我创建一个Kotlin Object类：[ObjectMethod](src/main/kotlin/com/baichuan/example/unit_test/ObjectMethod.kt)
 ```kotlin
 package com.baichuan.example.unit_test
