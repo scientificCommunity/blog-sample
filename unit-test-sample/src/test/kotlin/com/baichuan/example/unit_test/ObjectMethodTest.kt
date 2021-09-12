@@ -45,19 +45,24 @@ class ObjectMethodTest {
     fun testMockKotlinObjectWithJvmStatic() {
         ObjectMethod.doSomethingWithJvmStatic()
 
-        Mockito.mockStatic(ObjectMethod::class.java).`when`<Unit>(
+        val mockStatic = Mockito.mockStatic(ObjectMethod::class.java)
+        mockStatic.`when`<Unit>(
             ObjectMethod::doSomethingWithJvmStatic
         ).thenAnswer { println("this is mocked Object#doSomethingWithJvmStatic") }
 
         ObjectMethod.doSomethingWithJvmStatic()
+
+        mockStatic.close()
     }
 
     @Test
     fun testMockJavaStatic() {
-        Mockito.mockStatic(StaticMethod::class.java)
+        val mockStatic = Mockito.mockStatic(StaticMethod::class.java)
         Mockito.`when`(StaticMethod.doSomething())
             .thenAnswer { println("this is mocked StaticMethod#doSomething") }
 
         StaticMethod.doSomething()
+
+        mockStatic.close()
     }
 }
