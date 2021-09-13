@@ -3,6 +3,7 @@ package com.baichuan.example.unit_test.issue_log
 import com.baichuan.example.unit_test.ReflectionUtils
 import com.baichuan.example.unit_test.StaticMethod
 import org.junit.jupiter.api.*
+import org.mockito.MockedStatic
 import org.mockito.Mockito
 import org.mockito.exceptions.misusing.MissingMethodInvocationException
 
@@ -10,22 +11,34 @@ import org.mockito.exceptions.misusing.MissingMethodInvocationException
  * @author: tk (rivers.boat.snow@gmail.com)
  * @date: 2021/9/12
  */
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ObjectMethodTest {
-    @BeforeEach
+    @BeforeAll
     fun init() {
-
+        ObjectMethod.doSomethingWithJvmStatic()
+        mockStaticObjectMethod = Mockito.mockStatic(ObjectMethod::class.java)
     }
+
+    @AfterAll
+    fun destroy() {
+        mockStaticObjectMethod!!.close()
+    }
+
+    var mockStaticObjectMethod: MockedStatic<ObjectMethod>? = null
 
     @Test
     @DisplayName("mock普通的kotlin静态方法")
     fun testMockKotlinObject() {
+        //mockStaticObjectMethod = Mockito.mockStatic(ObjectMethod::class.java)
         Assertions.assertThrows(MissingMethodInvocationException::class.java) {
-            Mockito.mockStatic(ObjectMethod::class.java).`when`<Unit>(
+            mockStaticObjectMethod!!.`when`<Unit>(
                 ObjectMethod::doSomething
             ).thenAnswer { println("this is mocked Object#doSomething") }
         }
 
         ObjectMethod.doSomething()
+
+        //mockStaticObjectMethod!!.close()
     }
 
     @Test
@@ -46,14 +59,14 @@ class ObjectMethodTest {
     fun testMockKotlinObjectWithJvmStatic() {
         ObjectMethod.doSomethingWithJvmStatic()
 
-        val mockStatic = Mockito.mockStatic(ObjectMethod::class.java)
-        mockStatic.`when`<Unit>(
+        //mockStaticObjectMethod = Mockito.mockStatic(ObjectMethod::class.java)
+        mockStaticObjectMethod!!.`when`<Unit>(
             ObjectMethod::doSomethingWithJvmStatic
         ).thenAnswer { println("this is mocked Object#doSomethingWithJvmStatic") }
 
         ObjectMethod.doSomethingWithJvmStatic()
 
-        mockStatic.close()
+        //mockStaticObjectMethod!!.close()
     }
 
     @Test

@@ -1,6 +1,9 @@
 plugins {
     id 'java'
-    id 'maven'
+//    id 'maven'
+    //从7.0开始移除maven插件，用maven-publish代替
+    //参考：https://docs.gradle.org/7.0/userguide/upgrading_version_6.html?_ga=2.84404825.1362958663.1631522922-885384709.1625730101#removal_of_the_legacy_maven_plugin
+    id 'maven-publish'
 }
 
 group 'org.baichuan.blog.example'
@@ -14,7 +17,7 @@ dependencies {
     implementation group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
     compileOnly("io.vertx:vertx-core:4.0.0")
 
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
 
 jar {
