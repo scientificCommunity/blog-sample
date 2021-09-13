@@ -50,7 +50,7 @@ task myTest(type: Test) {
 
 jacocoTestReport {
     // tests are required to run before generating the report
-    dependsOn test
+    dependsOn myTest
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it, include: 'com/baichuan/example/unit_test/**')
