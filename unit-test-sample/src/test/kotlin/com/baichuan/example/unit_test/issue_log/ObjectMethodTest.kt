@@ -1,7 +1,8 @@
-package com.baichuan.example.unit_test
+package com.baichuan.example.unit_test.issue_log
 
+import com.baichuan.example.unit_test.ReflectionUtils
+import com.baichuan.example.unit_test.StaticMethod
 import org.junit.jupiter.api.*
-import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.exceptions.misusing.MissingMethodInvocationException
 
@@ -31,7 +32,7 @@ class ObjectMethodTest {
     @DisplayName("通过反射修改静态常量来mock普通的kotlin静态方法")
     fun testMockKotlinObjectMethodByReflection() {
         val mock = Mockito.mock(ObjectMethod::class.java)
-        Mockito.`when`(mock.doSomething()).then {
+        Mockito.`when`(ObjectMethod.doSomething()).then {
             print("this is mocked ObjectMethod by reflection")
         }
         val declaredMethod = ObjectMethod::class.java.getDeclaredField("INSTANCE")

@@ -1,4 +1,4 @@
-package com.baichuan.example.unit_test
+package com.baichuan.example.unit_test.issue_log
 
 object ObjectMethod {
 

@@ -1,5 +1,6 @@
 package com.baichuan.example.unit_test;
 
+import com.baichuan.example.unit_test.issue_log.ObjectMethod;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
