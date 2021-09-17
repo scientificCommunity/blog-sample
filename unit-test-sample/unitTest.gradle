@@ -229,7 +229,10 @@ void basicTestCoverageVerificationConfig(JacocoCoverageVerification task
             }
         }
 
-        //复杂度覆盖率。代码不同执行路径组合的覆盖率
+        /**
+         * 复杂度覆盖率。代码不同执行路径组合的覆盖率
+         * https://www.eclemma.org/jacoco/trunk/doc/counters
+         */
         rule {
             enabled = true
             element = 'CLASS'
