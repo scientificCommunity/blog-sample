@@ -8,6 +8,8 @@ import org.mockito.Mockito
 import org.mockito.exceptions.misusing.MissingMethodInvocationException
 
 /**
+ * 使用Mockito去mock kotlin object fun会引发的问题以及怎么解决
+ *
  * @author: tk (rivers.boat.snow@gmail.com)
  * @date: 2021/9/12
  */
