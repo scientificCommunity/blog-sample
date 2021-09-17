@@ -1,5 +1,5 @@
-#unit-test-sample
-junit的使用案例
+# unit-test-sample
+junit系列
 
 ### 踩坑日记之浅析Mockito mock Kotlin Object类方法报错
 比如我创建一个Kotlin Object类：[ObjectMethod](src/main/kotlin/com/baichuan/example/unit_test/ObjectMethod.kt)
