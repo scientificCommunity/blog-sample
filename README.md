@@ -9,5 +9,8 @@
 
 [我的博客](https://blog.csdn.net/scientificCommunity?spm=1001.2101.3001.5343) 上一些案例的源码
 
-## vertx
+## [vertx](src/test/java/org/baichuan/example/vertx/test)
 [Vertx实战之如何追踪异步函数调用](https://blog.csdn.net/scientificCommunity/article/details/117530394)
+
+## [unit-test](unit-test-sample/README.md)
+[踩坑日记之浅析Mockito mock Kotlin Object类方法报错](https://blog.csdn.net/scientificCommunity/article/details/120258224)
