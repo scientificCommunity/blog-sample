@@ -7,7 +7,7 @@
 [![JDK version](https://img.shields.io/badge/Gradle-6.8-green?logo=gradle&logoColor=white)](https://gradle.org/)
 [![chat on gitlab](https://img.shields.io/gitter/room/mampod/payment?logo=github)](https://github.com/scientificCommunity/blog-sample/issues)
 
-[我的博客]("https://blog.csdn.net/scientificCommunity?spm=1001.2101.3001.5343") 上一些案例的源码
+[我的博客](https://blog.csdn.net/scientificCommunity?spm=1001.2101.3001.5343) 上一些案例的源码
 
 ## vertx
-[Vertx实战之全链路追踪日志]("https://editor.csdn.net/md/?articleId=117530394")
+[Vertx实战之全链路追踪日志](https://editor.csdn.net/md/?articleId=117530394)
