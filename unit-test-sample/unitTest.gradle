@@ -6,6 +6,9 @@ ext {
     serviceSources = ['com/baichuan/example/unit_test/service/**']
     all = ['com/baichuan/example/unit_test/**']
     reportDir = 'jacocoHtmlReports'
+
+    verifyAll = ['com.baichuan.example.unit_test.service.*', 'com.baichuan.example.unit_test.controller.*']
+    verifyService = ['com.baichuan.example.unit_test.service.*']
 }
 
 test { t ->
@@ -185,4 +188,60 @@ task controllerTestJacocoReport(type: JacocoReport) {
         html.outputLocation = layout.buildDirectory.dir(project.ext.reportDir as String)
     }
     onlyIf = { true }
+}
+
+void basicTestCoverageVerificationConfig(JacocoCoverageVerification task
+                                         , String[] includeSources = rootProject.ext.verifyService
+                                         , String[] excludeSources = ['*Kt']
+                                         , BigDecimal instructionMinimum = 0.3) {
+    task.violationRules {
+        //以类为单位验证指令覆盖率
+        rule {
+            element = 'CLASS'
+            includes = includeSources
+            excludes = excludeSources
+            limit {
+                minimum = instructionMinimum
+            }
+        }
+
+        //验证行覆盖率
+        rule {
+            element = 'CLASS'
+            includes = includeSources
+            excludes = excludeSources
+            limit {
+                counter = 'LINE'
+                minimum = 0.3
+            }
+        }
+
+        //验证代码条件分支覆盖率
+        rule {
+            enabled = true
+            element = 'CLASS'
+            includes = includeSources
+            excludes = excludeSources
+
+            limit {
+                counter = 'BRANCH'
+                minimum = 0
+            }
+        }
+
+        //复杂度覆盖率。代码不同执行路径组合的覆盖率
+        rule {
+            enabled = true
+            element = 'CLASS'
+            includes = includeSources
+            excludes = excludeSources
+
+            limit {
+                counter = 'COMPLEXITY'
+                value = 'TOTALCOUNT'
+                minimum = 0
+            }
+        }
+    }
+    task.onlyIf = { true }
 }
