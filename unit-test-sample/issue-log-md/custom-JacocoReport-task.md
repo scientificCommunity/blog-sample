@@ -14,7 +14,7 @@ task serviceTest(type: Test) {
     useTestNG()
     useJUnitPlatform()
 
-		finalizedBy jacocoTestReport
+    finalizedBy jacocoTestReport
 
     jacoco {
         enabled = true
@@ -32,8 +32,8 @@ jacocoTestReport {
     // tests are required to run before generating the report
     dependsOn serviceTest
 		
-		//指定覆盖率统计数据文件。
-		executionData(layout.buildDirectory.file("jacoco/${serviceTest.name}.exec").get().asFile)
+    //指定覆盖率统计数据文件。
+    executionData(layout.buildDirectory.file("jacoco/${serviceTest.name}.exec").get().asFile)
 
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
