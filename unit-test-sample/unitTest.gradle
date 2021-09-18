@@ -145,11 +145,14 @@ jacocoTestReport {
 }
 
 //service test task jacoco reporter
-task serviceTestJacocoReport(type: JacocoReport) {
+task jacocoServiceTestReport(type: JacocoReport) {
     // tests are required to run before generating the report
     dependsOn serviceTest
 
-    //自定义的不会初始化默认的源码目录，需要手动指定
+    /**
+     * 自定义的不会初始化源码目录，需要手动指定。jacocoTestReport里默认设置的也是这个
+     * @see org.gradle.testing.jacoco.plugins.JacocoPlugin#addDefaultReportTask
+     */
     sourceSets sourceSets.main
 
     executionData(layout.buildDirectory.file("jacoco/${serviceTest.name}.exec").get().asFile)
@@ -169,7 +172,7 @@ task serviceTestJacocoReport(type: JacocoReport) {
 }
 
 //controller task jacoco reporter
-task controllerTestJacocoReport(type: JacocoReport) {
+task jacocoControllerTestReport(type: JacocoReport) {
     // tests are required to run before generating the report
     dependsOn controllerTest
 
