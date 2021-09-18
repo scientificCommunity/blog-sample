@@ -14,3 +14,5 @@
 
 ## [unit-test](unit-test-sample/README.md)
 [踩坑日记之浅析Mockito mock Kotlin Object类方法报错](https://blog.csdn.net/scientificCommunity/article/details/120258224)
+
+[踩坑日记之Gradle结合JacocoReport自定义Test task](https://blog.csdn.net/scientificCommunity/article/details/120365100)
