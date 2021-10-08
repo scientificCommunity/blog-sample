@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '0.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
+    // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore
+    implementation group: 'org.apache.httpcomponents', name: 'httpcore', version: '4.4.13'
+
+    implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.78'
+
+}
