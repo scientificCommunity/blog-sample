@@ -2,9 +2,9 @@ package org.baichuan.example.notion.bean
 
 /**
  * @author: tk (rivers.boat.snow@gmail.com)
- * @date: 2021/10/8
+ * @date: 2021/10/9
  */
-class MultiSelect : PropertyValue() {
+class Option {
     lateinit var name: String
-    lateinit var color: String
+    var color: String? = null
 }

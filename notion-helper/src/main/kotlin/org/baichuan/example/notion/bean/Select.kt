@@ -6,4 +6,5 @@ package org.baichuan.example.notion.bean
  */
 class Select : PropertyValue() {
     lateinit var name: String
+    var color: String? = null
 }

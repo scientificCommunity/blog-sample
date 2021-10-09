@@ -5,5 +5,6 @@ package org.baichuan.example.notion.bean
  * @date: 2021/10/8
  */
 class Title : PropertyValue() {
-    lateinit var text: Text
+    var type: String = "text"
+    var text: Text = Text()
 }

@@ -5,5 +5,5 @@ package org.baichuan.example.notion.bean
  * @date: 2021/10/8
  */
 class RichText : PropertyValue() {
-    lateinit var text: Text
+    var text: Text = Text()
 }

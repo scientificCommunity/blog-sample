@@ -5,5 +5,5 @@ package org.baichuan.example.notion.bean
  * @date: 2021/10/8
  */
 class Text {
-    lateinit var content: String
+    var content: String? = null
 }
