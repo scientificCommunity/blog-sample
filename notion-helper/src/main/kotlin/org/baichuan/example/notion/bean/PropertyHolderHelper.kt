@@ -1,5 +1,8 @@
 package org.baichuan.example.notion.bean
 
+import org.baichuan.example.notion.enum.TradeType
+import org.baichuan.example.notion.utils.ColorHelper
+
 /**
  * @author: tk (rivers.boat.snow@gmail.com)
  * @date: 2021/10/9
@@ -13,29 +16,42 @@ object PropertyHolderHelper {
         return map
     }
 
-    fun defineTradeAccount(): DefineSelectHolder {
+    fun <T : Enum<T>> defineSelect(options: Array<T>): DefineSelectHolder {
+        return defineSelect(options, null)
+    }
+
+    fun <T : Enum<T>> defineSelect(options: Array<T>, exclude: T?): DefineSelectHolder {
         val tradeAccountSelectHolder = DefineSelectHolder()
         val tradeAccountDefineSelect = DefineSelect()
-        //定义交易账号
-        val yuebao = Option()
-        yuebao.name = "余额宝"
+        val list: MutableList<Option> = ArrayList()
+        options.forEach {
+            if (exclude == null || it != exclude) {
+                //定义交易账号
+                val option = Option()
+                val field = it.javaClass.getDeclaredField("value")
+                field.isAccessible = true
+                val value = field.get(it)
+                option.name = value.toString()
+                option.color = ColorHelper.setColor(value.toString())
+                list.add(option)
+            }
+        }
 
-        val huabei = Option()
-        huabei.name = "花呗"
-
-        val zhaoshan = Option()
-        zhaoshan.name = "招商银行储蓄卡(6888)"
-
-        val jianshe = Option()
-        jianshe.name = "中国建设银行储蓄卡(5332)"
-
-        tradeAccountDefineSelect.options = arrayOf(huabei, yuebao, zhaoshan, jianshe)
+        tradeAccountDefineSelect.options = list.toTypedArray()
         tradeAccountSelectHolder.select = tradeAccountDefineSelect
 
         return tradeAccountSelectHolder
     }
 
-    fun defineTradeCategory(): DefineRichTextHolder {
+    fun createSelect(value: String): CreateSelectHolder {
+        val createSelectHolder = CreateSelectHolder()
+        val select = Select()
+        select.name = value
+        createSelectHolder.select = select
+        return createSelectHolder
+    }
+
+    fun defineRichText(): DefineRichTextHolder {
         val defineRichTextHolder = DefineRichTextHolder()
         val richText = RichText()
         defineRichTextHolder.richText = richText
@@ -43,22 +59,32 @@ object PropertyHolderHelper {
         return defineRichTextHolder
     }
 
-    fun defineTags(): DefineMultiSelectHolder {
+    fun createRichText(content: String): CreateRichTextHolder {
+        val defineRichTextHolder = CreateRichTextHolder()
+        val richText = RichText()
+        val text = Text()
+        text.content = content
+        richText.text = text
+        defineRichTextHolder.richText = arrayOf(richText)
+
+        return defineRichTextHolder
+    }
+
+    fun defineMultiSelect(): DefineMultiSelectHolder {
         val defineSelectHolder = DefineMultiSelectHolder()
         val defineSelect = DefineSelect()
-        val option = Option()
-        option.name = "test1"
-        defineSelect.options = arrayOf(option)
+        defineSelect.options = arrayOf()
         defineSelectHolder.multiSelect = defineSelect
 
         return defineSelectHolder
     }
 
-    fun createTags(vararg tags: String): CreateMultiSelectHolder {
+    fun createMultiSelect(vararg tags: String): CreateMultiSelectHolder {
         val array: MutableList<Select> = ArrayList(tags.size)
         for (tag in tags) {
             val multiSelect = Select()
             multiSelect.name = tag
+            //multiSelect.color = ColorHelper.setColor(tag)
             array.add(multiSelect)
         }
 
@@ -67,14 +93,14 @@ object PropertyHolderHelper {
         return createMultiSelectHolder
     }
 
-    fun defineAmount(): DefineNumberPropertyHolder {
+    fun defineNumber(): DefineNumberPropertyHolder {
         val defineNumberPropertyHolder = DefineNumberPropertyHolder()
         val defineNumberProperty = DefineNumberProperty()
         defineNumberPropertyHolder.number = defineNumberProperty
         return defineNumberPropertyHolder
     }
 
-    fun createAmount(amount: Double): CreateNumberHolder {
+    fun createNumber(amount: Double): CreateNumberHolder {
         val createNumberHolder = CreateNumberHolder()
         createNumberHolder.number = amount
         return createNumberHolder
@@ -94,8 +120,24 @@ object PropertyHolderHelper {
         title.text = text
 
         val createPropertyTitleHolder = CreatePropertyTitleHolder()
-        createPropertyTitleHolder.title = title
+        createPropertyTitleHolder.title = arrayOf(title)
 
         return createPropertyTitleHolder
     }
+
+    fun defineDate(): DefineDatePropertyHolder {
+        return DefineDatePropertyHolder()
+    }
+
+    fun createDate(date: String): CreateDatePropertyHolder {
+        val createDatePropertyHolder = CreateDatePropertyHolder()
+        val createDateProperty = CreateDateProperty()
+        createDateProperty.start = date
+        createDatePropertyHolder.date = createDateProperty
+        return createDatePropertyHolder
+    }
+}
+
+fun main() {
+    PropertyHolderHelper.defineSelect(TradeType.values())
 }
