@@ -5,5 +5,5 @@ package org.baichuan.example.notion.bean
  * @date: 2021/10/9
  */
 class CreatePropertyTitleHolder : Holder {
-    var title = Title()
+    var title: Array<Title> = arrayOf(Title())
 }
