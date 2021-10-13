@@ -1,6 +1,5 @@
 package org.baichuan.example.notion.bean
 
-import org.baichuan.example.notion.enum.TradeType
 import org.baichuan.example.notion.utils.ColorHelper
 
 /**
@@ -21,8 +20,8 @@ object PropertyHolderHelper {
     }
 
     fun <T : Enum<T>> defineSelect(options: Array<T>, exclude: T?): DefineSelectHolder {
-        val tradeAccountSelectHolder = DefineSelectHolder()
-        val tradeAccountDefineSelect = DefineSelect()
+        val defineSelectHolder = DefineSelectHolder()
+        val defineSelect = DefineSelect()
         val list: MutableList<Option> = ArrayList()
         options.forEach {
             if (exclude == null || it != exclude) {
@@ -37,10 +36,10 @@ object PropertyHolderHelper {
             }
         }
 
-        tradeAccountDefineSelect.options = list.toTypedArray()
-        tradeAccountSelectHolder.select = tradeAccountDefineSelect
+        defineSelect.options = list.toTypedArray()
+        defineSelectHolder.select = defineSelect
 
-        return tradeAccountSelectHolder
+        return defineSelectHolder
     }
 
     fun createSelect(value: String): CreateSelectHolder {
@@ -136,8 +135,4 @@ object PropertyHolderHelper {
         createDatePropertyHolder.date = createDateProperty
         return createDatePropertyHolder
     }
-}
-
-fun main() {
-    PropertyHolderHelper.defineSelect(TradeType.values())
 }
