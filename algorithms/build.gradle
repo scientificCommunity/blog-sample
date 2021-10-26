@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'org.baichuan.exmaple.algorithms'
+version '0.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on
+    implementation group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: '1.69'
+
+}
+
+task wrapper {
+
+}
