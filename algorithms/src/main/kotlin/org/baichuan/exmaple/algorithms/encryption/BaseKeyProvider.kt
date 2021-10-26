@@ -5,11 +5,10 @@ import java.io.File
 import java.io.FileReader
 import java.nio.charset.Charset
 import java.nio.file.Files
-import java.security.KeyFactory
-import java.security.PrivateKey
-import java.security.PublicKey
+import java.security.*
 import java.security.spec.PKCS8EncodedKeySpec
 import java.util.*
+
 
 /**
  * @author: tk (rivers.boat.snow@gmail.com)
@@ -83,6 +82,20 @@ abstract class BaseKeyProvider<U : PublicKey, R : PrivateKey> : KeyProvider<U, R
         val keyFactory = KeyFactory.getInstance(algorithms())
         val keySpec = PKCS8EncodedKeySpec(decoded)
         return keyFactory.generatePublic(keySpec) as U
+    }
+
+    /**
+     * 直接生成
+     */
+    fun generateRandom() {
+        val keyGen = KeyPairGenerator.getInstance("EC")
+        val random: SecureRandom = SecureRandom.getInstance("SHA1PRNG")
+
+        keyGen.initialize(256, random)
+
+        val pair = keyGen.generateKeyPair()
+        val private = pair.private
+        val pub = pair.public
     }
 
     abstract fun algorithms(): String
