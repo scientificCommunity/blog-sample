@@ -4,4 +4,5 @@ include 'jdk-threadpool-transformer'
 include 'vertx-samples'
 include 'unit-test-sample'
 include 'algorithms'
+include 'sentry-samples'
 
