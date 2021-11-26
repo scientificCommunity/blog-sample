@@ -1,3 +1,5 @@
+## 浅析hashCode
+
 ### hashCode是什么？
 
 首先，`hashCode`在计算机领域指的是一个数据经过`hash funcation`后得到的一个摘要，而这个摘要可以作为索引应用到`hash map`中去。接下来我们聊聊`hashCode`在`java`中是什么样的。
