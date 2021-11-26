@@ -1,0 +1,28 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm'
+    id 'java'
+}
+
+group 'org.baichuan.jdk_source_code'
+version '0.0.1'
+
+repositories {
+    mavenCentral()
+    mavenCentral()
+}
+task wrapper {
+
+}
+task prepareKotlinBuildScriptModel {
+
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}

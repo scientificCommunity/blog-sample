@@ -8,6 +8,9 @@ version '0.0.1'
 repositories {
     mavenCentral()
 }
+task prepareKotlinBuildScriptModel {
+
+}
 
 dependencies {
     // https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on
