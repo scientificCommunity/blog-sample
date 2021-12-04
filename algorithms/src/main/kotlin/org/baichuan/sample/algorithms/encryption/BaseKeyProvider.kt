@@ -1,4 +1,4 @@
-package org.baichuan.exmaple.algorithms.encryption
+package org.baichuan.sample.algorithms.encryption
 
 import org.bouncycastle.util.io.pem.PemReader
 import java.io.File
