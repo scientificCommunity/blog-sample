@@ -1,4 +1,4 @@
-package org.baichuan.exmaple.algorithms.encryption
+package org.baichuan.sample.algorithms.encryption
 
 import java.io.File
 import java.security.interfaces.ECPrivateKey

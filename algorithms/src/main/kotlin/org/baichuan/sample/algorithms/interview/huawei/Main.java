@@ -1,4 +1,4 @@
-package org.baichuan.exmaple.algorithms.interview.huawei;
+package org.baichuan.sample.algorithms.interview.huawei;
 
 import java.util.*;
 

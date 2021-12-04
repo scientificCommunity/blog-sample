@@ -1,4 +1,4 @@
-package org.baichuan.exmaple.algorithms.encryption
+package org.baichuan.sample.algorithms.encryption
 
 import java.security.PrivateKey
 import java.security.PublicKey

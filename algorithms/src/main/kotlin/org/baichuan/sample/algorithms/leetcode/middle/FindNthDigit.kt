@@ -1,6 +1,6 @@
-package org.baichuan.exmaple.algorithms.leetcode.middle
+package org.baichuan.sample.algorithms.leetcode.middle
 
-import org.baichuan.exmaple.algorithms.leetcode.middle.FindNthDigit.solution
+import org.baichuan.sample.algorithms.leetcode.middle.FindNthDigit.solution
 
 /**
  * @author: tk (rivers.boat.snow@gmail.com)
