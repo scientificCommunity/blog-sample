@@ -14,16 +14,17 @@ repositories {
 }
 
 dependencies {
+    implementation("org.postgresql:postgresql")
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("com.baomidou:mybatis-plus-boot-starter:3.4.2")
-    /*configurations {
+    configurations {
         implementation {
             exclude group: 'com.baomidou', module: 'mybatis-plus-core'
         }
-    }*/
-    implementation files("/Users/tk/IdeaProjects/tmp/mybatis-plus/mybatis-plus-core/build/libs/mybatis-plus-core-3.4.3.4.jar")
-    implementation files("/Users/tk/IdeaProjects/tmp/mybatis-plus/mybatis-plus-annotation/build/libs/mybatis-plus-annotation-3.4.3.4.jar")
+    }
+    implementation files("/Users/kuntang/IdeaProjects/mybatis-plus/mybatis-plus-core/build/libs/mybatis-plus-core-3.4.3.4.jar")
+    implementation files("/Users/kuntang/IdeaProjects/mybatis-plus/mybatis-plus-annotation/build/libs/mybatis-plus-annotation-3.4.3.4.jar")
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")

@@ -2,6 +2,6 @@ spring:
   datasource:
     name: paymentDb
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://8.129.97.36:5432/payment
-    username: postgres
-    password: hb2gZVUos7vosADO
+    url:
+    username:
+    password:
