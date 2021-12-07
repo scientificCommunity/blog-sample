@@ -5,4 +5,5 @@ include 'jdk-sourcecode-samples'
 include 'vertx-samples'
 include 'unit-test-sample'
 include 'algorithms'
+include 'kitchen-god'
 
