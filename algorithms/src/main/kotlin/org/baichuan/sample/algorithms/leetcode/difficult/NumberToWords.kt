@@ -72,12 +72,17 @@ class NumberToWords {
         var result = ""
         var numVar = num
 
+        /**
+         * 100及以上的数通过除法进行单位(百、千)单词查找
+         * 100以下的数进行减法进行数量(具体数值)单词查找
+         */
         if (numVar >= 100) {
             while (i < numberOfUnit.size) {
                 val l = numVar / numberOfUnit[i]
                 if (l > 0) {
                     result += findResult(l.toInt(), numberOfUnit, unit, numberOfWord) + unit[i] + " "
                     numVar -= (l * numberOfUnit[i]).toInt()
+                    //如果有余数，且余数小于100则按照减法进行单词查找
                     if (numVar in 1..99) {
                         result += findResult(numVar, numberOfUnit, unit, numberOfWord)
                     }
