@@ -5,8 +5,10 @@ package org.baichuan.sample.algorithms.leetcode.middle;
  * @date: 2022/1/10
  * https://leetcode-cn.com/problems/operations-lcci/
  * 面试题 16.09. 运算
+ * 最开始的思路，没完全实现，基本case都没完全通过
  * 废弃版
  */
+@Deprecated
 public class OperationsOld {
     static final int NEGATIVE_UNIT = -1;
     static final int POSITIVE_UNIT = 1;
