@@ -12,8 +12,8 @@ public class Operations {
 
     public static void main(String[] args) {
         System.out.println(new Operations().minus(2, 1));
-        System.out.println(new Operations().multiply(2, 1));
-        System.out.println(new Operations().divide(2, 1));
+        System.out.println(new Operations().multiply(0, -5));
+        System.out.println(new Operations().divide(2, 2));
     }
 
     public Operations() {
@@ -42,23 +42,25 @@ public class Operations {
     }
 
     public int multiply(int a, int b) {
+        if (a == 0 || b == 0) {
+            return 0;
+        }
+        int originalA = a;
+        int originalB = b;
         //乘积为正数
         if (b > 0 && a > 0) {
-            while (b > 0) {
-                a += a;
+            while (b > 1) {
+                a += originalA;
                 b += NEGATIVE_UNIT;
             }
             return a;
         }
         if (a < 0 && b < 0) {
-            int negativeA = 0;
             //求出a对应的正数值
-            while (a < 0) {
-                a += POSITIVE_UNIT;
-                negativeA += POSITIVE_UNIT;
-            }
-            while (b < 0) {
-                negativeA += negativeA;
+            int negativeA = getPositive(a);
+            originalA = negativeA;
+            while (b < -1) {
+                negativeA += originalA;
                 b += POSITIVE_UNIT;
             }
             return negativeA;
@@ -66,14 +68,14 @@ public class Operations {
 
         //乘积为负数
         if (a < 0) {
-            while (b > 0) {
-                a += a;
+            while (b > 1) {
+                a += originalA;
                 b += NEGATIVE_UNIT;
             }
             return a;
         } else {
-            while (a > 0) {
-                b += b;
+            while (a > 1) {
+                b += originalB;
                 a += NEGATIVE_UNIT;
             }
             return b;
@@ -82,20 +84,25 @@ public class Operations {
 
     public int divide(int a, int b) {
         int result = 0;
-        if (a > 0 && b > 0 || a < 0 && b < 0) {
-            while (a > b) {
+        if (a > 0 && b > 0) {
+            while (a >= b) {
+                b += b;
+                result++;
+            }
+        } else if (a < 0 && b < 0) {
+            while (a <= b) {
                 b += b;
                 result++;
             }
         } else if (a > 0) {
             int positiveB = getPositive(b);
-            while (a > positiveB) {
+            while (a >= positiveB) {
                 positiveB += positiveB;
                 result += NEGATIVE_UNIT;
             }
         } else {
             int negativeB = getNegative(b);
-            while (a < negativeB) {
+            while (a <= negativeB) {
                 negativeB += negativeB;
                 result += NEGATIVE_UNIT;
             }
