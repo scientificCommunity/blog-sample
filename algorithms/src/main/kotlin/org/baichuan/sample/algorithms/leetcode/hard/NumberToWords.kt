@@ -1,4 +1,4 @@
-package org.baichuan.sample.algorithms.leetcode.difficult
+package org.baichuan.sample.algorithms.leetcode.hard
 
 /**
  * @author: tk (rivers.boat.snow@gmail.com)

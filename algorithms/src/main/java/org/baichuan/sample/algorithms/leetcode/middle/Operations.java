@@ -2,144 +2,143 @@ package org.baichuan.sample.algorithms.leetcode.middle;
 
 /**
  * @author: tk (rivers.boat.snow@gmail.com)
- * @date: 2022/1/10
+ * @date: 2022/1/11
  * https://leetcode-cn.com/problems/operations-lcci/
  * 面试题 16.09. 运算
  */
 public class Operations {
+    long[] negatives = new long[32];
+    long[] positives = new long[32];
+    long[] cacheA = new long[32];
+    long[] cacheB = new long[32];
     static final int NEGATIVE_UNIT = -1;
-    static final int POSITIVE_UNIT = 1;
 
     public static void main(String[] args) {
-        System.out.println(new Operations().minus(2, 1));
-        System.out.println(new Operations().multiply(0, -5));
-        System.out.println(new Operations().divide(2, 2));
+        System.out.println((Integer.MAX_VALUE + 1) * 2 + 1);
+        System.out.println(new Operations().multiply(-1, -2147483647));
+        System.out.println(new Operations().multiply(-100, 21474836));
+        System.out.println(new Operations().divide(-2147483648, 1));
     }
 
     public Operations() {
-
+        negatives[0] = NEGATIVE_UNIT;
+        positives[0] = 1;
+        for (int i = 1; i < 32; i++) {
+            negatives[i] = negatives[i + NEGATIVE_UNIT] + negatives[i + NEGATIVE_UNIT];
+            positives[i] = positives[i + NEGATIVE_UNIT] + positives[i + NEGATIVE_UNIT];
+        }
     }
 
     public int minus(int a, int b) {
-        if (b < 0 && a > 0 || a < 0 && b > 0) {
-            return a + b;
+        if (a == b) {
+            return 0;
         }
-
-        int tmp;
-
-        if (b > 0) {
-            tmp = NEGATIVE_UNIT;
-            while (b + tmp > 0) {
-                tmp += NEGATIVE_UNIT;
-            }
-        } else {
-            tmp = POSITIVE_UNIT;
-            while (b + tmp < 0) {
-                tmp += POSITIVE_UNIT;
+        int index = 31;
+        while (index >= 0) {
+            if (b > 0) {
+                if (b >= positives[index]) {
+                    b += negatives[index];
+                    a += negatives[index];
+                } else {
+                    index += NEGATIVE_UNIT;
+                }
+            } else {
+                if (b <= negatives[index]) {
+                    b += positives[index];
+                    a += positives[index];
+                } else {
+                    index += NEGATIVE_UNIT;
+                }
             }
         }
-        return a + tmp;
+        return a;
     }
 
     public int multiply(int a, int b) {
-        if (a == 0 || b == 0) {
-            return 0;
+        if (a == 0 || b == 0) return 0;
+        if (a == 1) return b;
+        if (b == 1) return a;
+        if (a == NEGATIVE_UNIT) return minus(0, b);
+        if (b == NEGATIVE_UNIT) return minus(0, a);
+        boolean aSign = a > 0;
+        //最终结果的正负，true：正 false：负
+        boolean resultSign = (a > 0 && b > 0) || (a < 0 && b < 0);
+
+        /**
+         * 转负数是为了简化代码
+         * 为什么不转正数？因为-2147483648无法转成有效的4字节正数
+         */
+        if (a > 0) {
+            a = minus(0, a);
         }
-        int originalA = a;
-        int originalB = b;
-        //乘积为正数
-        if (b > 0 && a > 0) {
-            while (b > 1) {
-                a += originalA;
-                b += NEGATIVE_UNIT;
-            }
-            return a;
-        }
-        if (a < 0 && b < 0) {
-            //求出a对应的正数值
-            int negativeA = getPositive(a);
-            originalA = negativeA;
-            while (b < -1) {
-                negativeA += originalA;
-                b += POSITIVE_UNIT;
-            }
-            return negativeA;
+        if (b > 0) {
+            b = minus(0, b);
         }
 
-        //乘积为负数
-        if (a < 0) {
-            while (b > 1) {
-                a += originalA;
-                b += NEGATIVE_UNIT;
-            }
-            return a;
-        } else {
-            while (a > 1) {
-                b += originalB;
-                a += NEGATIVE_UNIT;
-            }
-            return b;
+        cacheA[0] = a;
+        for (int i = 1; i < 31; i++) {
+            cacheA[i] = cacheA[i + NEGATIVE_UNIT] + cacheA[i + NEGATIVE_UNIT];
         }
+
+        int result = 0;
+        int index = 31;
+        while (index >= 0) {
+            if (b <= negatives[index]) {
+                b += positives[index];
+                result += cacheA[index];
+            }
+            index += NEGATIVE_UNIT;
+        }
+
+        //原始结果符号，用来判断计算结果是否溢出
+        boolean originalResultSign = result > 0;
+        //确保溢出的情况不会影响结果的正负
+        if (originalResultSign != aSign) {
+            result = minus(0, result);
+        }
+
+        //确定最终结果的正负
+        if ((resultSign && result < 0) || (!resultSign && result > 0)) {
+            result = minus(0, result);
+        }
+
+        return result;
     }
 
     public int divide(int a, int b) {
+        if (a == 0 || (a > 0 && a < b) || (a < 0 && a > b)) return 0;
         int result = 0;
-        if (a > 0 && b > 0) {
-            while (a >= b) {
-                b += b;
-                result++;
-            }
-        } else if (a < 0 && b < 0) {
-            while (a <= b) {
-                b += b;
-                result++;
-            }
-        } else if (a > 0) {
-            int positiveB = getPositive(b);
-            while (a >= positiveB) {
-                positiveB += positiveB;
-                result += NEGATIVE_UNIT;
-            }
-        } else {
-            int negativeB = getNegative(b);
-            while (a <= negativeB) {
-                negativeB += negativeB;
-                result += NEGATIVE_UNIT;
-            }
+
+        boolean resultSign = (a > 0 && b > 0) || (a < 0 && b < 0);
+
+        if (a > 0) {
+            a = minus(0, a);
+        }
+        if (b > 0) {
+            b = minus(0, b);
         }
 
-        return result;
-    }
+        //cacheB[0] = b* 2^0
+        cacheB[0] = b;
+        for (int i = 1; i < 32; i++) {
+            cacheB[i] = cacheB[i + NEGATIVE_UNIT] + cacheB[i + NEGATIVE_UNIT];
+        }
 
-    /**
-     * 获取x对应的负数
-     * x>0
-     *
-     * @param x
-     * @return -x
-     */
-    private int getNegative(int x) {
-        int result = 0;
-        while (x > 0) {
-            x += NEGATIVE_UNIT;
-            result += NEGATIVE_UNIT;
+        int index = 31;
+        long preDividedB = 0;
+        while (index >= 0) {
+            if (a <= cacheB[index] + preDividedB) {
+                preDividedB += cacheB[index];
+                result += positives[index];
+            }
+            index += NEGATIVE_UNIT;
+        }
+
+        //确定最终结果的正负
+        if ((resultSign && result < 0) || (!resultSign && result > 0)) {
+            result = minus(0, result);
         }
         return result;
     }
 
-    /**
-     * 获取x对应的正数
-     * x<0
-     *
-     * @param x
-     * @return -x
-     */
-    public int getPositive(int x) {
-        int result = 0;
-        while (x < 0) {
-            x += POSITIVE_UNIT;
-            result += POSITIVE_UNIT;
-        }
-        return result;
-    }
 }
