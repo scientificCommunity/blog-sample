@@ -18,7 +18,7 @@ public class BestLine {
      * @return
      */
     public int[] bestLine(int[][] points) {
-        int[] result = new int[points.length];
+        int[] result = new int[2];
         int max = 0;
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < points.length; i++) {
