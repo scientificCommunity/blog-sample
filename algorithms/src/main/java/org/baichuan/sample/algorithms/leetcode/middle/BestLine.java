@@ -29,12 +29,13 @@ public class BestLine {
                 int count = 0;
                 for (int k = j + 1; k < points.length; k++) {
                     int dx1 = points[j][0] - points[i][0];
-                    int dy1 = points[j][0] - points[i][0];
+                    int dy1 = points[j][1] - points[i][1];
 
                     if (dy1 * dx == dy * dx1) {
                         count++;
                     }
                     if (count > max) {
+                        max = count;
                         result[0] = i;
                         result[1] = j;
                     }
