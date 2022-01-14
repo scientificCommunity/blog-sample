@@ -19,6 +19,9 @@ public class BestLine {
      */
     public int[] bestLine(int[][] points) {
         int[] result = new int[2];
+        //如果没有超过3个点的直线，则返回点0跟点1构成的直线
+        result[0] = 0;
+        result[1] = 1;
         int max = 0;
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < points.length; i++) {
@@ -28,8 +31,8 @@ public class BestLine {
                 int dy = points[i][1] - points[j][1];
                 int count = 0;
                 for (int k = j + 1; k < points.length; k++) {
-                    int dx1 = points[j][0] - points[i][0];
-                    int dy1 = points[j][1] - points[i][1];
+                    int dx1 = points[k][0] - points[i][0];
+                    int dy1 = points[k][1] - points[i][1];
 
                     if (dy1 * dx == dy * dx1) {
                         count++;
