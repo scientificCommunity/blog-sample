@@ -9,6 +9,13 @@ import java.util.Random;
  * 快排解法2，相对解法1来讲，通过将基准值拿出来后留下的空位进行数组位置交换，在遍历数组需要交换数据位置时少了swap里的一个临时变量的赋值
  */
 public class QuickSort2 extends SortHelper implements Sort {
+    public static void main(String[] args) {
+        for (int n : new QuickSort2().sortArray(new int[]{5, 2, 3, 1})) {
+            System.out.println(n);
+        }
+
+    }
+
     @Override
     public int[] sortArray(int[] nums) {
         doSort(nums, 0, nums.length - 1);
@@ -55,7 +62,7 @@ public class QuickSort2 extends SortHelper implements Sort {
         }
 
         //把基准值放到准确的位置
-        swap(arr, currLeft, right);
+        arr[currLeft] = pivot;
 
         //返回基准值应该在的位置
         return currLeft;

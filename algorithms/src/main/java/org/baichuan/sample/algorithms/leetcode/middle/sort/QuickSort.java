@@ -8,6 +8,12 @@ import java.util.Random;
  * 快排平均性能高的本质是分而治之，所以基准值的选择需要能够均匀的切分数组来保证后续的每个任务都能被拆成两个子任务并行计算
  */
 public class QuickSort extends SortHelper implements Sort {
+    public static void main(String[] args) {
+        for (int n : new QuickSort().sortArray(new int[]{5, 2, 3, 1})) {
+            System.out.println(n);
+        }
+
+    }
     @Override
     public int[] sortArray(int[] nums) {
         doSort(nums, 0, nums.length - 1);
@@ -25,7 +31,7 @@ public class QuickSort extends SortHelper implements Sort {
     public int partition(int[] arr, int left, int right) {
         /*
           随机数作为基准值的下标,相对题目的case来说，这里计算随机数是一个比较大的性能损耗
-          如果不用随机数作为基准值的下标，可以考虑用(left+right)/2，这样的话leetcode上的性能分会有一个很大的提升。
+          如果不用随机数作为基准值的下标，可以考虑用(right-left)/2 + left，这样的话leetcode上的性能分会有一个很大的提升。
           但是尽量不能用left或者right作为基准值的下标, 因为这种情况下如果数组本身就是有序的(升序或者降序)，
           这样会导致partition起不到分割数组的作用(因为后续划分出来的区间肯定有一个不满足left<right)
          */
