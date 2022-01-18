@@ -5,7 +5,14 @@ import java.util.Random;
 /**
  * @author: tk (rivers.boat.snow@gmail.com)
  * @date: 2022/1/17
- * 快排平均性能高的本质是分而治之，所以基准值的选择需要能够均匀的切分数组来保证后续的每个任务都能被拆成两个子任务并行计算
+ * 快排性能比较高的精髓是：x>=y ==》 x比所有比y小的数大
+ * 所以每一次通过基准值进行partition后如果能够更均匀的切分数组，就能获得更高的性能(减少了比较次数，即基准值两边的数的大小的比较)。
+ * <p>
+ * 所以基准值的选择很重要，尽量保证能够更均匀的切分数组。但是这个保证很难通过一个固定的基准值来实现，因为我们不知道原数组是什么样的，
+ * 很有可能我们这个固定值刚好每次切分出来的分区一边只有一个元素，另一边是剩下的元素，那么在这种情况下，就不能用到上面所说的"精髓"所带来的优势(比较次数减少)。
+ * 这时，每两个数之间都会发生大小比较，算法的时间复杂度上升至n^2。 比如：数组元素本身有序，基准值每次都取最左边或者最右边的元素。
+ * <p>
+ * 可以选择随机数作为基准值的下标来尽量避免极端情况的出现。
  */
 public class QuickSort extends SortHelper implements Sort {
     public static void main(String[] args) {
@@ -14,6 +21,7 @@ public class QuickSort extends SortHelper implements Sort {
         }
 
     }
+
     @Override
     public int[] sortArray(int[] nums) {
         doSort(nums, 0, nums.length - 1);
