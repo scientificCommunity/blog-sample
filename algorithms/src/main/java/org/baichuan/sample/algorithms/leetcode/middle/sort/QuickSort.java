@@ -14,7 +14,7 @@ import java.util.Random;
  * <p>
  * 可以选择随机数作为基准值的下标来尽量避免极端情况的出现。
  */
-public class QuickSort extends SortHelper implements Sort {
+public class QuickSort extends ArrayHelper implements Sort {
     public static void main(String[] args) {
         for (int n : new QuickSort().sortArray(new int[]{5, 2, 3, 1})) {
             System.out.println(n);
