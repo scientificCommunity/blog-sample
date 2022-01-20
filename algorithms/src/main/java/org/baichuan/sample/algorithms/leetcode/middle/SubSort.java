@@ -9,9 +9,9 @@ package org.baichuan.sample.algorithms.leetcode.middle;
  * 可将数组分为左中右3部分，则存在：
  * 1. 左边的最大值小于中间的最小值
  * 2. 右边的最小值大于中间的最大值
- * 所以，从前向后历数组，记录下已遍历的数中的最大值tmpMax，如果array[i]比这个最大值小(不满足规律2)，
+ * 所以，从左到右历数组，记录下已遍历的数中的最大值tmpMax，如果array[i]比这个最大值小(不满足规律2)，
  * 则把中间部分的右端点last置为该数的下标i。否则将tmpMax置为array[i]。
- * 从后向前遍历数组，记录下已遍历的数中的最小值tmpMin，如果更左边的一个数array[i]比这个最小值大(不满足规律1),
+ * 从右到左遍历数组，记录下已遍历的数中的最小值tmpMin，如果更左边的一个数array[i]比这个最小值大(不满足规律1),
  * 则更小中间部分的左端点first为这个数的下标i。否则将tmpMin置为array[i]。
  */
 public class SubSort {
