@@ -6,6 +6,6 @@ package org.baichuan.sample.algorithms.leetcode.middle.sort;
  * 912. 排序数组
  * https://leetcode-cn.com/problems/sort-an-array/
  */
-public interface Sort {
+public interface ArraySort {
     int[] sortArray(int[] nums);
 }
