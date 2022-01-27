@@ -6,7 +6,7 @@ package org.baichuan.sample.algorithms.leetcode.middle;
  * https://leetcode-cn.com/problems/operations-lcci/
  * 面试题 16.09. 运算
  */
-public class Operations {
+public class OperationsJava {
     long[] negatives = new long[32];
     long[] positives = new long[32];
     long[] cacheA = new long[32];
@@ -15,12 +15,12 @@ public class Operations {
 
     public static void main(String[] args) {
         System.out.println((Integer.MAX_VALUE + 1) * 2 + 1);
-        System.out.println(new Operations().multiply(-1, -2147483647));
-        System.out.println(new Operations().multiply(-100, 21474836));
-        System.out.println(new Operations().divide(-2147483648, 1));
+        System.out.println(new OperationsJava().multiply(-1, -2147483647));
+        System.out.println(new OperationsJava().multiply(-100, 21474836));
+        System.out.println(new OperationsJava().divide(-2147483648, 1));
     }
 
-    public Operations() {
+    public OperationsJava() {
         negatives[0] = NEGATIVE_UNIT;
         positives[0] = 1;
         for (int i = 1; i < 32; i++) {
