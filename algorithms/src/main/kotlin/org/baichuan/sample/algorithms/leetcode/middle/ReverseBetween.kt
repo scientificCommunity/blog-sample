@@ -3,6 +3,9 @@ package org.baichuan.sample.algorithms.leetcode.middle
 /**
  * @author: kuntang (rivers.boat.snow@gmail.com)
  * @date: 2022/4/12
+ *
+ * 执行用时：136 ms, 在所有 Kotlin 提交中击败了97.62%的用户
+ * 内存消耗：32.7 MB, 在所有 Kotlin 提交中击败了100.00%的用户
  */
 class ReverseBetween {
     fun reverseBetween(head: ListNode?, left: Int, right: Int): ListNode? {
