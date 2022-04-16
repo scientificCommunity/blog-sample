@@ -11,7 +11,7 @@ import java.util.List;
  * 递归解法
  */
 public class LetterCombinations {
-    private static final String LETTER_MAP[] = {
+    private static final String[] LETTER_MAP = {
             "abc",  //2
             "def",  //3
             "ghi",  //4
