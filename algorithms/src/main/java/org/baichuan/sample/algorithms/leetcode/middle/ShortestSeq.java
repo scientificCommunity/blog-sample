@@ -52,6 +52,7 @@ public class ShortestSeq {
 
         int left = 0;
         int right = 0;
+        //big子串中剩余应满足的字符数
         int diff = small.length;
 
         for (int i = 0; i < big.length; i++) {
@@ -60,6 +61,7 @@ public class ShortestSeq {
             }
             if (map.containsKey(big[i])) {
                 map.put(big[i], map.get(big[i]) - 1);
+                //如果对应的值不为负数，则表面这次匹配是不多余的，则令diff减1
                 if (map.get(big[i]) >= 0) {
                     diff--;
                 }
@@ -72,6 +74,7 @@ public class ShortestSeq {
                     }
 
                     for (int j = left; j < i; j++) {
+                        //左指针右移
                         left++;
                         if (map.containsKey(big[j])) {
                             map.put(big[j], map.get(big[j]) + 1);
@@ -89,6 +92,8 @@ public class ShortestSeq {
                     }
                 }
             }
+            //右指针向右移动，应该放在循环的末尾，
+            // 表示每次完整的循环（找到答案break时已经结束循环，指针就应该取当前值，而不应该再向右移）才会使指针向右移动（即下次循环的右指针所在的位置）
             right++;
         }
         if (ansLeft == 0 && ansRight == 0) {
