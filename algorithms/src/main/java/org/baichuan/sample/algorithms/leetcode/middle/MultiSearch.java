@@ -10,6 +10,7 @@ import java.util.*;
  */
 public class MultiSearch {
     class TrieNode {
+
         TrieNode[] next = new TrieNode[26];
         String word = null;
     }
@@ -42,6 +43,11 @@ public class MultiSearch {
         return result;
     }
 
+    /**
+     * 构建字典树
+     *
+     * @param smalls
+     */
     private void constructTrieNode(String[] smalls) {
         for (String s : smalls) {
             TrieNode node = root;
@@ -61,10 +67,14 @@ public class MultiSearch {
         char[] chars = big.toCharArray();
         TrieNode node = root;
         for (int i = beginIndex; i < chars.length; i++) {
+            //对big进行遍历时，如果能在next中一直找到对应字符，则说明有相应的序列。如果next的word不为空，则说明匹配到了small中的一个完整字符串
+            //如果某一个字符不在next中，则说明small中不存在big中从beginIndex到i的序列（大于i的自然更不可能存在），则跳出循环
             if (node.next[chars[i] - 'a'] == null) {
                 return result;
             }
+            //如果存在，则继续往下找
             node = node.next[chars[i] - 'a'];
+            //如果word不为空，说明找到了一个small中的完整的序列
             if (node.word != null) {
                 result.add(node.word);
             }
