@@ -48,33 +48,38 @@ public class FindLadders {
         return ans;
     }
 
-    // TODO: 2022/4/17 优化：返回值改为bool ，如果找到了，返回true，否则返回false
-    private void doFind(String beginWord, String endWord, List<String> wordList, List<String> ans, Set<Integer> visited) {
+    private boolean doFind(String beginWord, String endWord, List<String> wordList, List<String> ans, Set<Integer> visited) {
         if (beginWord.equals(endWord)) {
-            return;
+            return true;
         }
         for (int i = 0; i < wordList.size(); i++) {
             if (visited.contains(i)) {
                 continue;
             }
-            // TODO: 2022/4/17 这里判断是否能转换的代码可以封装成一个方法，便于理解 
-            int diff2Begin = 0;
-            for (int j = 0; j < wordList.get(i).length(); j++) {
-                if (wordList.get(i).charAt(j) != beginWord.charAt(j)) {
-                    diff2Begin++;
-                }
-            }
-            if (diff2Begin == 1) {
+
+            if (canTransfer(beginWord, wordList.get(i))) {
                 ans.add(wordList.get(i));
                 visited.add(i);
-                doFind(wordList.get(i), endWord, wordList, ans, visited);
-                if (ans.get(ans.size() - 1).equals(endWord)) {
-                    return;
-                } else {
-                    ans.remove(ans.size() - 1);
+                if (doFind(wordList.get(i), endWord, wordList, ans, visited)) {
+                    return true;
                 }
+                ans.remove(ans.size() - 1);
             }
         }
+        return false;
+    }
+
+    private boolean canTransfer(String beginWord, String word) {
+        int diff2Begin = 0;
+        for (int j = 0; j < word.length(); j++) {
+            if (word.charAt(j) != beginWord.charAt(j)) {
+                if (diff2Begin == 1) {
+                    return false;
+                }
+                diff2Begin++;
+            }
+        }
+        return diff2Begin == 1;
     }
 
     public static void main(String[] args) {
