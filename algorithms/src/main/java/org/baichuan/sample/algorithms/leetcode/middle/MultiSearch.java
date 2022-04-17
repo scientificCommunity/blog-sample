@@ -10,7 +10,10 @@ import java.util.*;
  */
 public class MultiSearch {
     class TrieNode {
-
+        //本质上是把small中的所有字符拿出来，按small字符串每个字符的顺序组成了一个树，有相同字符顺序的字符串或者子串，其在树中的路径也会有相应的重合。
+        //这样通过big对树进行后缀搜索时，
+        // 每一次对树的访问都是常数级的时间复杂度（构造树的复杂度是len(small)，搜索树的时间复杂度是len(big)，极端情况是len(big)^2）。
+        // 同时也不会有任何遗漏。
         TrieNode[] next = new TrieNode[26];
         String word = null;
     }
