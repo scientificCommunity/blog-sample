@@ -95,6 +95,11 @@ public class LongestWord {
         return node.word != null && !node.word.equals(word);
     }
 
+    /**
+     * @param begin     本次迭代遍历word字符时的起始偏移量
+     * @param wordCount 已跟word匹配的单词数量，如果最终word=1，表明只有word本身与其匹配，此时返回false。即return wordCount>1
+     * @return true: word由其他单词组成
+     */
     private boolean find2(String word, int begin, int wordCount) {
         TrieNode node = root;
         for (int i = begin; i < word.length(); i++) {
