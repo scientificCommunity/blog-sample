@@ -55,6 +55,7 @@ public class Respace {
     }
 
     /**
+     * 参考：https://leetcode-cn.com/problems/re-space-lcci/solution/jian-dan-dp-trieshu-bi-xu-miao-dong-by-sweetiee/
      * 状态定义：dp[i]表示从sentence第0个到第i个字符组成的句子里未识别的最少字符数，所以dp[len(sentence)]就是最终结果
      * 状态转移方程: dp[i]=min(dp[idx], dp[i - 1] + 1)
      * 解释: 当i向右移动一位，有两种情况：
