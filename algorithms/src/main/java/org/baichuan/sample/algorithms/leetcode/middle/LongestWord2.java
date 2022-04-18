@@ -8,6 +8,7 @@ import java.util.Arrays;
  * 面试题 17.15. 最长单词
  * https://leetcode-cn.com/problems/longest-word-lcci/
  * 解法：字典树+DPS
+ * 相对于{@link LongestWord} 该解法先对word排序，然后直接遍历找到第一个能由其他word组成的word即可
  * <p>
  * 给定一组单词words，编写一个程序，找出其中的最长单词，且该单词由这组单词中的其他单词组合而成。若有多个长度相同的结果，返回其中字典序最小的一项，若没有符合要求的单词则返回空字符串。
  * <p>
@@ -26,7 +27,7 @@ import java.util.Arrays;
  * 链接：https://leetcode-cn.com/problems/longest-word-lcci
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class LongestWord {
+public class LongestWord2 {
     class TrieNode {
         TrieNode[] next = new TrieNode[26];
         String word = null;
@@ -41,19 +42,14 @@ public class LongestWord {
         }
 
         constructTrieNode(words);
-        int maxLen = 0;
-        //按长度相等按首字母比对的方式能过所有case，但貌似不完全符合题意
-        char startLetter = 'z';
+        //优先按长度从大到小排序，长度相等则按所有字母的字典顺序排序
+        Arrays.sort(words, (a, b) -> a.length() == b.length() ? a.compareTo(b) : b.length() - a.length());
         for (String word : words) {
             if (word.length() == 0) {
                 continue;
             }
             if (find2(word, 0, 0)) {
-                if (word.length() > maxLen || (word.length() == maxLen && word.charAt(0) < startLetter)) {
-                    ans = word;
-                    maxLen = word.length();
-                    startLetter = word.charAt(0);
-                }
+                return word;
             }
         }
         return ans;
