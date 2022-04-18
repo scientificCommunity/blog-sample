@@ -62,11 +62,12 @@ public class LongestWord {
     private void constructTrieNode(String[] words) {
         for (String s : words) {
             TrieNode node = root;
-            for (Character c : s.toCharArray()) {
-                if (node.next[c - 'a'] == null) {
-                    node.next[c - 'a'] = new TrieNode();
+            for (char c : s.toCharArray()) {
+                int index = c-'a';
+                if (node.next[index] == null) {
+                    node.next[index] = new TrieNode();
                 }
-                node = node.next[c - 'a'];
+                node = node.next[index];
             }
             node.word = s;
         }
@@ -99,10 +100,11 @@ public class LongestWord {
     private boolean find2(String word, int begin, int wordCount) {
         TrieNode node = root;
         for (int i = begin; i < word.length(); i++) {
-            if (node.next[word.charAt(i) - 'a'] == null) {
+            int index = word.charAt(i) - 'a';
+            if (node.next[index] == null) {
                 return false;
             }
-            node = node.next[word.charAt(i) - 'a'];
+            node = node.next[index];
 
             if (node.word != null) {
                 if (word.length() > i + 1) {
