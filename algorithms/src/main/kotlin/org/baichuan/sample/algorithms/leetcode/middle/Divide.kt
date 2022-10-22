@@ -3,7 +3,7 @@ package org.baichuan.sample.algorithms.leetcode.middle
 /**
  * https://leetcode.cn/problems/divide-two-integers/
  * 两数相除
- * 核心原理： 38/3 = 3*2 + 32 = 3*2*2+26= 3*2*2*2 + 14 = 3*2*2*2 + 3*2*2 +2 = 3(2*2*2 + 2*2) +2 = 3 * 12 + 2 = 12
+ * 核心思路： 38/3 = 3*2 + 32 = 3*2*2+26= 3*2*2*2 + 14 = 3*2*2*2 + 3*2*2 +2 = 3(2*2*2 + 2*2) +2 = 3 * 12 + 2 = 12
  */
 class Divide {
     fun divide(dividend: Int, divisor: Int): Int {
@@ -17,6 +17,12 @@ class Divide {
             if (divisor == -1) {
                 return Integer.MAX_VALUE;
             }
+        }
+        if (divisor == 1) {
+            return dividend
+        }
+        if (divisor == -1) {
+            return -dividend
         }
         var result = 1
         var sign = 0
