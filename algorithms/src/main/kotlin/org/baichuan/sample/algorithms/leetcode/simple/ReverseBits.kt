@@ -1,5 +1,9 @@
 package org.baichuan.sample.algorithms.leetcode.simple
 
+/**
+ * 面试题 05.03. 翻转数位
+ * https://leetcode.cn/problems/reverse-bits-lcci/
+ */
 class ReverseBits {
     fun reverseBits(num: Int): Int {
         var i1 = 0
